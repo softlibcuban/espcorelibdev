@@ -4,4 +4,13 @@ development project for a simple communication library between an espX device an
 
 
 ### TODO
-- [ ] ...
+- [ ] Setup OTA
+- [ ] Basic WS
+- [ ] Basic Events
+- [ ] Refactor ConnManager
+- [ ] Add Wifi Reset function
+- [ ] Add SmartConfig
+- [ ] Refactor to lib
+- [ ] Add two modes (config mode/ hard code mode)
+- [ ] Add storage manager
+- [ ] Implement ws protocol
