@@ -6,13 +6,14 @@
 #include <WiFi.h>
 #endif
 
+#include "util/WifiConfig.hpp"
+
 void setup(){
-    Serial.begin(115200);
+
+    initConfigOnSwitch(); 
 }
 void loop(){
 
-    Serial.println("hola");
-
-    delay(1000);
+    mainWifiFunction();
 
 }
