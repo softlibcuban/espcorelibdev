@@ -14,6 +14,6 @@ void setup(){
 }
 void loop(){
 
-    mainWifiFunction();
+    check_status();
 
 }
