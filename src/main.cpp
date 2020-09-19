@@ -11,11 +11,14 @@
 #include <SPIFFS.h>
 #include <ESPAsyncWebServer.h> //contiene plugin para websockets
 
-/***
-    Arreglar esto o cambiar de librería:
-    #include "util/WifiConfig.hpp"
-    Esta libreria entra en conflicto con ESPAsyncWebServer
-****/
+
+/*******************************************************************************
+ * 
+ * trabajando sin la librería https://github.com/khoih-prog/ESP_WiFiManager
+ * problemas de compatibilidad con https://github.com/me-no-dev/ESPAsyncWebServer
+ * 
+********************************************************************************/
+#include "util/WifiConfig.hpp"
 
 
 //Archivos locales en /include path
@@ -33,10 +36,10 @@
 
 void setup(){
 
-    // initConfigOnSwitch(); 
+    initWifiConfig(); 
 }
 void loop(){
 
-    // check_status();
+    check_status();
 
 }
