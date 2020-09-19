@@ -1,16 +1,42 @@
 
 AsyncWebServer server(80);
 
+void InitServer()
+{
+// 	server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){// Route handling function
+// 	AsyncWebServerResponse *response = request->beginResponse(200, "text/plain", "Ok");
+// 	response->addHeader("Content-Encoding", "gzip"); 
+// 	request->send(SPIFFS, "/bundle.gz", String(), false);
+// });
+server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
+        AsyncWebServerResponse* response = request->beginResponse(SPIFFS, "/bundle.gz", "text/html");
+        response->addHeader("Content-Encoding", "gzip");
+        request->send(response);
+    });
+	
+
+	server.serveStatic("/", SPIFFS, "/").setDefaultFile("bundle.gz");
+
+	server.onNotFound([](AsyncWebServerRequest *request) {
+		request->send(400, "text/plain", "Not found");
+	});
+
+	server.begin();
+    Serial.println("HTTP server started");
+}
+
+
+
 void onWsEvent(AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventType type, void * arg, uint8_t *data, size_t len){ 
   if(type == WS_EVT_CONNECT){
-    //Serial.printf("ws[%s][%u] connect\n", server->url(), client->id());
+    Serial.printf("ws[%s][%u] connect\n", server->url(), client->id());
     client->ping();
   } else if(type == WS_EVT_DISCONNECT){
-    //Serial.printf("ws[%s][%u] disconnect: %u\n", server->url(), client->id());
+    Serial.printf("ws[%s][%u] disconnect: %u\n", server->url(), client->id());
   } else if(type == WS_EVT_ERROR){
-    //Serial.printf("ws[%s][%u] error(%u): %s\n", server->url(), client->id(), *((uint16_t*)arg), (char*)data);
+    Serial.printf("ws[%s][%u] error(%u): %s\n", server->url(), client->id(), *((uint16_t*)arg), (char*)data);
   } else if(type == WS_EVT_PONG){
-    //Serial.printf("ws[%s][%u] pong[%u]: %s\n", server->url(), client->id(), len, (len)?(char*)data:"");
+    Serial.printf("ws[%s][%u] pong[%u]: %s\n", server->url(), client->id(), len, (len)?(char*)data:"");
   } else if(type == WS_EVT_DATA){
     AwsFrameInfo * info = (AwsFrameInfo*)arg;
     String msg = "";

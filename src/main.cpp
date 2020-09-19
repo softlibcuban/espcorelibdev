@@ -12,13 +12,6 @@
 #include <ESPAsyncWebServer.h> //contiene plugin para websockets
 
 
-/*******************************************************************************
- * 
- * trabajando sin la librería https://github.com/khoih-prog/ESP_WiFiManager
- * problemas de compatibilidad con https://github.com/me-no-dev/ESPAsyncWebServer
- * 
-********************************************************************************/
-#include "util/WifiConfig.hpp"
 
 
 //Archivos locales en /include path
@@ -30,16 +23,32 @@
 #include "WebSockets.hpp"
 #include "Utils_AWS.hpp"
 
+/*******************************************************************************
+ * 
+ * trabajando sin la librería https://github.com/khoih-prog/ESP_WiFiManager
+ * problemas de compatibilidad con https://github.com/me-no-dev/ESPAsyncWebServer
+ * 
+********************************************************************************/
+
+#include "util/WifiConfig.hpp"
 
 
+uint8_t BUILTIN_BUTTON = 0;
 
 
 void setup(){
+    Serial.begin(115200);
+    Serial.println("HOlaaaa");
 
-    initWifiConfig(); 
+    initWifiConfig();
+    pinMode(BUILTIN_BUTTON,OUTPUT);
 }
+
+
 void loop(){
 
-    check_status();
+    
+    updateGPIO("BOTON", !(digitalRead(BUILTIN_BUTTON)));
 
+    delay(2000);
 }
