@@ -1,10 +1,9 @@
 #include <Arduino.h>
 
-#include "util/WifiConfig.hpp"
-
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
-// #include <ESPAsyncWebServer.h> //contiene plugin para websockets
+
+#include "util/WifiConfig.hpp"
 
 //Archivos locales en /include path
 
@@ -31,14 +30,10 @@ void setup(){
 }
 
 
-void loop(){
+void loop(){    
 
-    
-
-    delay(2000);
-    
-    // connectMultiWiFi();
     check_status();
-    delay(1000);
     updateGPIO("BOTON", !(digitalRead(BUILTIN_BUTTON)));
+    delay(1000);
+    
 }
