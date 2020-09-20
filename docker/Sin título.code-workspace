@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../docs/espurna"
+		},
+		{
+			"path": "../../docs/withdocker/docker-platformio-core"
+		},
+		{
+			"path": "../../docs/withdocker/platformio-docker-build"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"functional": "cpp"
+		}
+	}
+}

@@ -14,3 +14,7 @@ development project for a simple communication library between an espX device an
 - [ ] Add two modes (config mode/ hard code mode)
 - [ ] Add storage manager
 - [ ] Implement ws protocol
+
+
+Build docker image 
+docker build -t espX docker/
