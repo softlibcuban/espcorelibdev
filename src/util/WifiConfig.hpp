@@ -211,15 +211,15 @@ DNSServer dnsServer;
 
 uint8_t connectMultiWiFi(void)
 {
-#if ESP32
-  // For ESP32, this better be 0 to shorten the connect time
-  #define WIFI_MULTI_1ST_CONNECT_WAITING_MS       0
-#else
-  // For ESP8266, this better be 2200 to enable connect the 1st time
-  #define WIFI_MULTI_1ST_CONNECT_WAITING_MS       2200L
-#endif
+  #if ESP32
+    // For ESP32, this better be 0 to shorten the connect time
+    #define WIFI_MULTI_1ST_CONNECT_WAITING_MS       1000L
+  #else
+    // For ESP8266, this better be 2200 to enable connect the 1st time
+    #define WIFI_MULTI_1ST_CONNECT_WAITING_MS       2200L
+  #endif
 
-#define WIFI_MULTI_CONNECT_WAITING_MS           100L
+  #define WIFI_MULTI_CONNECT_WAITING_MS           100L
   
   uint8_t status;
 
@@ -315,8 +315,8 @@ void check_status(void)
 
   static ulong current_millis;
 
-#define WIFICHECK_INTERVAL    1000L
-#define HEARTBEAT_INTERVAL    10000L
+  #define WIFICHECK_INTERVAL    1000L
+  #define HEARTBEAT_INTERVAL    10000L
 
   current_millis = millis();
   
@@ -330,7 +330,7 @@ void check_status(void)
   // Print hearbeat every HEARTBEAT_INTERVAL (10) seconds.
   if ((current_millis > checkstatus_timeout) || (checkstatus_timeout == 0))
   {
-    heartBeatPrint();
+    // heartBeatPrint();
     checkstatus_timeout = current_millis + HEARTBEAT_INTERVAL;
   }
 }
