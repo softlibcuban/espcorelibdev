@@ -1,0 +1,35 @@
+{
+    "command" : "stateTank",
+    "estado": [
+        {   
+            "label": "Estado de la bomba",
+            "varName": "pumpState",
+            "value": "Encendida"
+        },
+        {   
+            "label": "Sensor de nivel",
+            "varName": "errorLevelSens",
+            "value": "OK"
+        },
+        {   
+            "label": "Sensor de flujo",
+            "varName": "errorFlowSens",
+            "value": "ERROR"
+        },
+        {   
+            "label": "Nivel bajo",
+            "varName": "lowLevelThreshold",
+            "value": 70
+        },
+        {   
+            "label": "Nivel alto",
+            "varName": "highLevelThreshold",
+            "value": 100
+        },
+        {   
+            "label": "Umbral Flujo Bajo",
+            "varName": "lowFlowThreshold",
+            "value": 5
+        }
+    ]
+}
